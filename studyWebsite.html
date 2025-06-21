@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport meta tag for responsive behavior -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মিনহাজুল ইসলাম শুভ | পড়াশোনার রিসোর্স</title>
+    <!-- Tailwind CSS CDN for modern styling and responsive utilities -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Noto Sans Bengali font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom font: Noto Sans Bengali used */
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* Default light mode background */
+            background-color: #f5f7fa; 
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
+        }
+
+        /* Dark mode styles for body */
+        html.dark body {
+            background-color: #1a202c; /* Dark gray for dark mode */
+            color: #e2e8f0; /* Light text color */
+        }
+
+        /* Styles for the Intro Section */
+        .intro-section {
+            position: relative; /* For absolute positioning of dark mode toggle */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 50px 20px; /* Responsive padding */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 0 0 12px 12px;
+            /* Light mode background */
+            background: linear-gradient(to right, #ffffff, #e0f2fe); /* from-white to-sky-200 */
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Dark mode styles for intro section */
+        html.dark .intro-section {
+            background: linear-gradient(to right, #2d3748, #4a5568); /* Darker gradient */
+            color: #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .intro-section img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #0077b5; /* Still using a standard blue border for contrast */
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        /* Dark mode for image border */
+        html.dark .intro-section img {
+            border-color: #63b3ed; /* Lighter blue in dark mode */
+        }
+
+        .intro-section h1 {
+            margin: 10px 0 5px;
+            font-size: 28px; /* Default font size */
+            color: #2d3748; /* Default text color */
+        }
+        html.dark .intro-section h1 {
+            color: #e2e8f0; /* Light text in dark mode */
+        }
+
+        /* Specific h2 styling for department */
+        .intro-section h2 {
+            margin: 0;
+            font-size: 20px; /* Default font size */
+            color: #4a5568; /* Default text color */
+        }
+        html.dark .intro-section h2 {
+            color: #cbd5e0; /* Lighter text in dark mode */
+        }
+
+        /* Specific p styling for university */
+        .intro-section p {
+            font-size: 16px; /* Default font size */
+            max-width: 600px; /* Constrain width on larger screens */
+            margin: 20px auto;
+            color: #4a5568; /* Default text color */
+        }
+        html.dark .intro-section p {
+            color: #cbd5e0; /* Lighter text in dark mode */
+        }
+        html.dark .intro-section p a {
+            color: #90cdf4; /* Lighter blue for link in dark mode */
+        }
+
+
+        /* Common button styles */
+        .action-button {
+            display: inline-flex; /* Use flex to align icon and text */
+            align-items: center;
+            gap: 8px; /* Space between icon and text */
+            padding: 10px 20px;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 5px; /* Add margin for spacing between buttons */
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Button specific styles using sky blue */
+        .sky-button {
+            background-color: #0ea5e9; /* Tailwind sky-500 */
+        }
+
+        .sky-button:hover {
+            background-color: #0284c7; /* Tailwind sky-600 */
+        }
+
+        /* Dark mode for sky buttons */
+        html.dark .sky-button {
+            background-color: #2b6cb0; /* Darker blue for dark mode */
+        }
+        html.dark .sky-button:hover {
+            background-color: #3182ce; /* Even darker blue on hover in dark mode */
+        }
+
+        /* Back to Top Button styles */
+        #backToTopBtn {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position */
+            bottom: 20px; /* Place at the bottom */
+            right: 20px; /* Place at the right */
+            z-index: 99; /* Ensure it's above other content */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: #0ea5e9; /* Sky blue background */
+            color: white; /* White text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px; /* Some padding */
+            border-radius: 10px; /* Rounded corners */
+            font-size: 18px; /* Increase font size */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        #backToTopBtn:hover {
+            background-color: #0284c7; /* Darker sky blue on hover */
+            transform: translateY(-2px);
+        }
+        /* Dark mode for Back to Top Button */
+        html.dark #backToTopBtn {
+            background-color: #2b6cb0;
+        }
+        html.dark #backToTopBtn:hover {
+            background-color: #3182ce;
+        }
+
+        /* WhatsApp Button styles - Moved to bottom right */
+        #whatsappButton {
+            position: fixed;
+            bottom: 80px; /* Positioned above Back to Top button */
+            right: 20px;
+            z-index: 100;
+            background-color: #25D366; /* WhatsApp green */
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        #whatsappButton:hover {
+            background-color: #1DA851; /* Darker green on hover */
+            transform: scale(1.05);
+        }
+        /* Dark mode for WhatsApp button */
+        html.dark #whatsappButton {
+            background-color: #10B981; /* Slightly different green for dark mode */
+        }
+        html.dark #whatsappButton:hover {
+            background-color: #059669;
+        }
+
+        #whatsappButton svg {
+            fill: white; /* Ensure SVG icon is white */
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Footer social icons */
+        .footer-social-icon {
+            display: inline-block;
+            margin: 0 10px;
+            color: white;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .footer-social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .footer-social-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor; /* Use parent's color for SVG fill */
+        }
+
+        /* Dark Mode Toggle Button */
+        #darkModeToggle {
+            /* Styles for the button itself are now in Tailwind classes below */
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+        #darkModeToggle:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Content section headers in dark mode */
+        html.dark .bg-white {
+            background-color: #2d3748; /* Darker background for sections */
+            color: #e2e8f0; /* Light text */
+        }
+        html.dark .bg-sky-50 {
+            background-color: #2d3748; /* Darker background for sections */
+            color: #e2e8f0; /* Light text */
+        }
+        html.dark .text-gray-700 {
+            color: #e2e8f0; /* Lighter text for headings */
+        }
+        html.dark .text-gray-600 {
+            color: #cbd5e0; /* Lighter text for paragraphs */
+        }
+        html.dark .bg-sky-100 {
+            background-color: #4a5568; /* Darker background for sub-headings */
+        }
+        html.dark .text-blue-600 {
+            color: #90cdf4; /* Lighter blue for links */
+        }
+        html.dark .hover\:bg-sky-100:hover {
+            background-color: #4a5568; /* Darker hover for links */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- WhatsApp Button - Moved to bottom right and icon changed -->
+    <a href="https://wa.me/qr/B7RA24UQPIL2G1" target="_blank" id="whatsappButton" title="WhatsApp এ যোগাযোগ করুন">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.63.42 3.23 1.22 4.65L2.05 22l5.02-1.32c1.32.75 2.82 1.15 4.02 1.15 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.75 14.75c-.29.74-1.74 1.44-2.39 1.44-.37 0-.74-.12-1.07-.45-.48-.49-1.28-1.57-1.54-1.89s-.45-.37-.62-.12c-.17.25-.66.86-.81 1.03-.17.17-.33.25-.62.08-.29-.17-1.24-.48-2.36-1.46-1.12-.98-1.88-2.32-2.1-2.69-.25-.49.03-.69.21-.86.17-.17.37-.45.56-.62.17-.17.25-.29.37-.49.12-.17.06-.33-.03-.49-.06-.12-.49-1.4-.66-1.82-.17-.45-.33-.37-.49-.37-.17 0-.37 0-.56.03-.21.03-.56.12-.86.42-.29.29-1.12 1.07-1.12 2.61 0 1.54 1.15 3.01 1.65 3.65.48.62 2.29 3.49 5.54 4.88 3.24 1.39 3.24.96 3.84.96.6 0 1.54-.62 1.74-.92.21-.29.37-.49.56-.74.17-.17.33-.25.52-.12.17.12.92.56 1.07.66.17.12.33.25.48.33.17.17.33.25.48.25z"/>
+        </svg>
+    </a>
+
+    <!-- Intro Section (Header) with white and sky blue gradient -->
+    <section class="intro-section bg-gradient-to-r from-white to-sky-200 text-gray-800 shadow-lg py-10 px-4 sm:px-6 lg:px-8 rounded-b-lg">
+        <!-- Dark Mode Toggle Button -->
+        <button id="darkModeToggle" class="absolute top-4 right-4 p-2 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 transition-colors duration-300">
+            <!-- Sun icon for light mode (visible when dark class is NOT present on html) -->
+            <span class="dark:hidden">☀️</span> 
+            <!-- Moon icon for dark mode (visible when dark class IS present on html) -->
+            <span class="hidden dark:inline">🌙</span> 
+        </button>
+
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQEh6FuRysl-jA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1715332296599?e=1755734400&v=beta&t=6RyrKQoweV70Rn0CXHRmR6LaGI8grvGNVq63PsmJJ_s" alt="মিনহাজুল ইসলাম শুভ এর ছবি" class="rounded-full mb-4 shadow-lg border-4 border-blue-600 w-32 h-32 object-cover">
+        
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-2 rounded-lg text-gray-800 dark:text-gray-100">
+            মিনহাজুল ইসলাম শুভ
+        </h1>
+        <!-- Department and University information separated for better presentation -->
+        <h2 class="text-xl sm:text-2xl lg:text-3xl font-semibold mb-1 rounded-lg text-gray-700 dark:text-gray-200">
+            সিএসই (কম্পিউটার সায়েন্স অ্যান্ড ইঞ্জিনিয়ারিং) বিভাগ
+        </h2>
+        <p class="text-lg sm:text-xl lg:text-2xl font-light mb-2 rounded-lg text-gray-600 dark:text-gray-300">
+            <a href="https://www.uiu.ac.bd/" target="_blank" class="text-gray-600 hover:text-blue-600 hover:underline transition-colors duration-200 dark:text-blue-300 dark:hover:text-blue-200">
+                ইউনাইটেড ইন্টারন্যাশনাল ইউনিভার্সিটি (UIU)
+            </a>
+        </p>
+        
+        <p class="text-base sm:text-lg lg:text-xl font-light mb-4 rounded-lg opacity-90 max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+            আমার ব্যক্তিগত পড়াশোনার পোর্টালে আপনাকে স্বাগতম! এখানে আমি আমার শিক্ষাজীবনের বিভিন্ন পর্যায়ের যত্ন সহকারে সুবিন্যস্ত করা রিসোর্স, নোটস এবং প্রজেক্টসমূহ শেয়ার করেছি। আশা করি এই পেজটি আমার এবং অন্যান্য শিক্ষার্থীদের জন্য একটি মূল্যবান সম্পদ হিসেবে কাজ করবে।
+        </p>
+        
+        <div class="flex flex-wrap justify-center mt-4">
+            <a class="action-button sky-button" href="https://www.linkedin.com/in/minhazul-islam-shuvo-642326300/" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+                আমার লিঙ্কডইন প্রোফাইল ভিজিট করুন
+            </a>
+            <a class="action-button sky-button" href="mailto:mds263803@gmail.com">আমাকে ইমেইল করুন</a>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <section class="bg-white p-8 rounded-lg shadow-md mb-8 dark:bg-gray-800 dark:text-gray-100">
+            <h2 class="text-3xl font-bold text-gray-700 mb-4 dark:text-gray-100">আমার সম্পর্কে</h2>
+            <p class="text-gray-600 leading-relaxed dark:text-gray-300">
+                এই ব্যক্তিগত শিক্ষা সংগ্রহশালায় আপনাকে স্বাগতম! এখানে আমি আমার শিক্ষাজীবনের বিভিন্ন পর্যায়ের সংগৃহীত রিসোর্স, গুরুত্বপূর্ণ নোটস এবং প্রজেক্টসমূহ সুবিন্যস্তভাবে উপস্থাপন করেছি। আমার প্রত্যাশা, এই পোর্টালটি আমার জ্ঞানচর্চার যাত্রায় যেমন সহায়ক হবে, তেমনি অন্যদের জন্যও একটি মূল্যবান তথ্যসূত্র হিসেবে কাজ করবে।
+            </p>
+        </section>
+
+        <section class="bg-sky-50 p-8 rounded-lg shadow-md mb-8 dark:bg-gray-700 dark:text-gray-100">
+            <h2 class="text-3xl font-bold text-gray-700 mb-6 dark:text-gray-100">কোর্স মেটেরিয়ালস</h2>
+            <p class="text-gray-600 leading-relaxed mb-6 dark:text-gray-300">
+                এখানে আপনি আমার একাডেমিক কোর্সের জন্য প্রয়োজনীয় লেকচার নোটস, অ্যাসাইনমেন্ট, প্রাসঙ্গিক আর্টিকেল এবং অন্যান্য গুরুত্বপূর্ণ রিসোর্সসমূহের একটি সুসংহত সংগ্রহ পাবেন। এটি আপনার বিশ্ববিদ্যালয়ের পড়াশোনার যাত্রাকে আরও সহজ ও ফলপ্রসূ করতে ডিজাইন করা হয়েছে।
+            </p>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold text-gray-700 mb-4 px-4 py-2 bg-sky-100 rounded-md border-b-0 dark:bg-gray-600 dark:text-gray-100">একাডেমিক লিঙ্কস</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+                    <a href="https://drive.google.com/drive/folders/1-1FTdZl7cFUY_fdBHWyyjJm1kvxGvTU0?usp=drive_link"
+                       target="_blank"
+                       class="inline-block sky-button text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-50 text-center">
+                        UIU সামার '২৪ কোর্স মেটেরিয়ালস
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1H6Hqhj-VZhy-hLq1tqC7rxYH_o8FMWzt?usp=drive_link"
+                       target="_blank"
+                       class="inline-block sky-button text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-50 text-center">
+                        UIU ফল '২৪ কোর্স মেটেরিয়ালস
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1QkBWNGx_yuUA41G0kTGOTJ4X9ICYT6eD?usp=sharing"
+                       target="_blank"
+                       class="inline-block sky-button text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-50 text-center">
+                        UIU স্প্রিং '২৫ কোর্স মেটেরিয়ালস
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-700 mb-4 px-4 py-2 bg-sky-100 rounded-md border-b-0 dark:bg-gray-600 dark:text-gray-100">সেল্ফ ডেভেলপমেন্ট ও পেশাগত দক্ষতা</h3>
+                <p class="text-gray-600 leading-relaxed mb-4 dark:text-gray-300">
+                    ব্যক্তিগত ও পেশাদারী দক্ষতা বৃদ্ধির লক্ষ্যে এখানে বিভিন্ন অনলাইন রিসোর্স, নির্দেশিকা এবং উন্নয়নমূলক কোর্সের সুবিন্যস্ত সংগ্রহ উপস্থাপন করা হয়েছে, যা আপনার স্ব-উন্নয়নের যাত্রাকে ত্বরান্বিত করবে।
+                </p>
+                <a href="https://drive.google.com/drive/folders/15H643V5kMvdZIqYdAFOknKxqxPf7sgIz?usp=sharing"
+                   target="_blank"
+                   class="inline-block sky-button text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-50 mt-4 mb-4">
+                    কমপ্লিট প্রোগ্রামিং রিসোর্স প্যাক
+                </a>
+                <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                    </ul>
+            </div>
+        </section>
+    </main>
+
+    <button onclick="topFunction()" id="backToTopBtn" title="উপরে যান">
+        ↑ উপরে যান
+    </button>
+
+    <script>
+        // Get the back to top button
+        let mybutton = document.getElementById("backToTopBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+
+        // Add more JavaScript here for other interactive features
+        // Example: Smooth scrolling for navigation links (if you add a navigation menu)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Dark Mode Toggle Logic
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const htmlElement = document.documentElement; // This is the <html> tag
+
+        // Check for saved theme preference on load
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        // Toggle theme on button click
+        darkModeToggle.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+
+    <footer class="bg-gray-800 text-white py-6 mt-10 rounded-t-lg dark:bg-gray-900">
+        <div class="container mx-auto text-center text-sm">
+            <p class="mb-4">&copy; ২০২৫ মিনহাজুল ইসলাম শুভ। সর্বস্বত্ব সংরক্ষিত।</p>
+            <div class="flex justify-center space-x-6">
+                <a href="https://www.linkedin.com/in/minhazul-islam-shuvo-642326300/" target="_blank" class="footer-social-icon text-white hover:text-blue-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="mailto:mds263803@gmail.com" class="footer-social-icon text-white hover:text-red-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 12.713l-11.754-11.713h23.508l-11.754 11.713zm0 2.574l-12 11.713v-23.426l12 11.713zm.746-2.574l11.254-11.713v23.426l-11.254-11.713z"/>
+                    </svg>
+                </a>
+                <a href="https://wa.me/qr/B7RA24UQPIL2G1" target="_blank" class="footer-social-icon text-white hover:text-green-400">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.63.42 3.23 1.22 4.65L2.05 22l5.02-1.32c1.32.75 2.82 1.15 4.02 1.15 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.75 14.75c-.29.74-1.74 1.44-2.39 1.44-.37 0-.74-.12-1.07-.45-.48-.49-1.28-1.57-1.54-1.89s-.45-.37-.62-.12c-.17.25-.66.86-.81 1.03-.17.17-.33.25-.62.08-.29-.17-1.24-.48-2.36-1.46-1.12-.98-1.88-2.32-2.1-2.69-.25-.49.03-.69.21-.86.17-.17.37-.45.56-.62.17-.17.25-.29.37-.49.12-.17.06-.33-.03-.49-.06-.12-.49-1.4-.66-1.82-.17-.45-.33-.37-.49-.37-.17 0-.37 0-.56.03-.21.03-.56.12-.86.42-.29.29-1.12 1.07-1.12 2.61 0 1.54 1.15 3.01 1.65 3.65.48.62 2.29 3.49 5.54 4.88 3.24 1.39 3.24.96 3.84.96.6 0 1.54-.62 1.74-.92.21-.29.37-.49.56-.74.17-.17.33-.25.52-.12.17.12.92.56 1.07.66.17.12.33.25.48.33.17.17.33.25.48.25z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
